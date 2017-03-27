@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="${fm_lang}">
+<head>
+  <meta charset="utf-8">
+  <title>${fm_title}</title>
+  <meta name="description" content="${fm_description}">
+  <meta name="date" content="${fm_date}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style>
+  a { text-decoration: none; margin: 0 0.1em; color: #36F; }
+  a:hover { text-decoration: underline; }
+  
+  nav { width:25%; position:fixed; height:100%; overflow-y:scroll; margin:0; padding:0; top:0; left:0; background-color:#fcfcfc; }
+  nav h1 { margin:0.5em 1em; }
+  nav .description { margin:1em; }
+  nav input { width:90%; margin:1em auto; display:block; }
+  nav .index { margin:1em; }
+  nav .noitem { display:none; color:#999; }
+  nav ul { padding:0; margin:0; }
+  nav li { list-style:none; margin-bottom:0.25em }
+  
+  section { margin-left:25%; }
+  section div { margin:10px; }
+  section dl { margin-bottom:1.5em; }
+  section dl dt { font-weight:bold; font-size:140%; color:#333; }
+  </style>
+  <script>
+  $(function(){
+      var list = $.map($("nav .index li"), function(c, i){
+          return { n: i,  v: $(c).text() }
+      })
+      var match = function(key){
+          return list.filter(function(c, i){ return 0 <= c.v.indexOf(key) }).map(function(c, i){ return c.n })
+      }
+      $("nav .noitem").on('click', function(){
+          $("nav > input").val("").trigger('change');
+      });
+      $("nav > input").on('change', function(){
+         var disp = match($(this).val());
+         $("nav .index li").map(function(i, c){
+             0 <= disp.indexOf(i) ? $(this).show() : $(this).hide();
+         });
+         (disp.length == 0) ? $("nav .noitem").show() : $("nav .noitem").hide();
+      });
+  })
+  </script>
+</head>
+<body>
+<nav>
+    <h1>${fm_title}</h1>
+    <p class="description">${fm_description}</p>
+    <input type="text" />
+    <div class="index">
+        <ul>
+            ${indexes}
+        </ul>
+        <div class="noitem">No Results Found.</div>
+    </div>
+</nav>
+<section>
+<div>
+    ${items}
+</div>
+</section>
+</body>
+</html>

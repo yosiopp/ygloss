@@ -23,6 +23,10 @@ def replace(src, _dict):
         dest = dest.replace(k, v)
     return dest
 
+if len(sys.argv) < 2:
+    sys.stderr.write('Illegal Argument: please specify the yaml for converted.\n')
+    sys.exit(1)
+
 # proc front matter
 n = 0
 lines = open(sys.argv[1], 'r').readlines()

@@ -1,7 +1,7 @@
-# ygross
-grossary tools
+# ygloss
+glossary tools
 
 ## usage
 ```
-./ygross grossary.yaml > grossary.html
+./ygloss glossary.yaml > glossary.html
 ```

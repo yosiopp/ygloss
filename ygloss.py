@@ -19,13 +19,13 @@ def replace(src, _dict):
 lines = open(sys.argv[1], 'r').readlines()
 n = 5
 body = ''.join(lines[n:])
-gross = yaml.load(body)
+gloss = yaml.load(body)
 
 items = []
 indexes = []
-keywords = sorted(gross.keys(), key=lambda x: len(x), reverse=True)
+keywords = sorted(gloss.keys(), key=lambda x: len(x), reverse=True)
 
-for k, v in gross.items():
+for k, v in gloss.items():
     indexes.append(TMPL_INDEX % (k, k))
     v = v.strip().replace("\n","<br>\n")
     for i in range(len(keywords)):

@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import os
 import sys
 import copy
-import yaml
 import re
+import yaml
 from datetime import datetime
 
+TEMPLATE_FILE='tmpl.html'
 TMPL_INDEX='<li><a href="#%s">%s</a></li>'
 TMPL_ITEM='<dl id="%s"><dt>%s</dt><dd>%s</dd></dl>'
 
@@ -60,6 +62,6 @@ data = encode_dict({
     '${indexes}': "\n".join(sorted(indexes)),
     '${items}': "\n".join(sorted(items))
 }, 'utf-8')
-tmpl = open('tmpl.html').read()
+tmpl = open(os.path.join(os.path.dirname(__file__), TEMPLATE_FILE)).read()
 
 print replace(tmpl, data)

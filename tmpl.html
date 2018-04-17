@@ -23,6 +23,11 @@
   section div { margin:10px; }
   section dl { margin-bottom:1.5em; }
   section dl dt { font-weight:bold; font-size:140%; color:#333; }
+  @media print {
+    nav { display: block; background-color: initial; }
+    nav input { display: none; }
+    nav .index { display: none; }
+  }
   </style>
   <script>
   $(function(){

@@ -88,4 +88,4 @@ data = encode_dict({
 }, 'utf-8')
 tmpl = open(curfile(TEMPLATE_FILE)).read()
 
-print replace(tmpl, data)
+print(replace(tmpl, data))
